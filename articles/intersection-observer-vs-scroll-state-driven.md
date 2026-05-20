@@ -1,6 +1,6 @@
 ---
-title: "スクロール連動UIの取りこぼし問題 - IntersectionObserverから状態駆動への切り替え"
-emoji: "🎯"
+title: "スクロール連動UIの取りこぼし問題: IntersectionObserverから状態駆動への切り替え"
+emoji: "🧭"
 type: "tech"
 topics: ["javascript", "css", "frontend", "performance", "ux"]
 published: true
