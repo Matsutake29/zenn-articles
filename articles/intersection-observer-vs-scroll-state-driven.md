@@ -8,8 +8,8 @@ published: true
 
 ## はじめに
 
-採用ページの実装で、スクロール連動UIに不具合が出ました。
-「ビューポート中央に来たカードを active 化、左の写真と連動切替」というありがちな仕掛けで、最初は IntersectionObserver で実装していました。
+LPや採用ページなどでよく見かける、スクロール連動UIの実装で不具合が出ました。
+「ビューポート中央に来たカードを active 化、別の要素（写真・画像・テキスト等）と連動切替」というありがちな仕掛けで、最初は IntersectionObserver で実装していました。
 
 しかし高速スクロール時に：
 - 「2を飛ばして4にジャンプ」する
@@ -23,7 +23,7 @@ published: true
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      const job = entry.target.dataset.job;
+      const key = entry.target.dataset.key;
       // active 切替
     }
   });
@@ -46,38 +46,37 @@ const observer = new IntersectionObserver((entries) => {
 「帯を出た」イベントを処理していませんでした（`isIntersecting=true` のときしか動かない実装）。
 
 一番上まで戻しても、最後に「入った」と判定された2が残ったまま。
-1番目のカードがそもそも帯に入る前にスクロールが止まると永遠に切り替わりません。
+1番目の要素がそもそも帯に入る前にスクロールが止まると永遠に切り替わりません。
 
 つまり「変化の瞬間」だけを見張る実装では、変化が高速だと取りこぼし、戻し方によっては前の状態を引きずってしまうわけです。
 
 ## 新実装（scroll 直接観測）
 
 ```js
-function initJobListingScroll() {
-  const cards = document.querySelectorAll("...");
-  const photos = document.querySelectorAll("...");
+function initScrollSync() {
+  const items = document.querySelectorAll("...");
 
-  let currentJob = null;
+  let currentKey = null;
   let ticking = false;
 
   const update = () => {
     ticking = false;
     const viewportCenter = window.innerHeight / 2;
-    let nearestJob = null;
+    let nearestKey = null;
     let minDistance = Infinity;
 
-    cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      const cardCenter = rect.top + rect.height / 2;
-      const distance = Math.abs(cardCenter - viewportCenter);
+    items.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const itemCenter = rect.top + rect.height / 2;
+      const distance = Math.abs(itemCenter - viewportCenter);
       if (distance < minDistance) {
         minDistance = distance;
-        nearestJob = card.dataset.job;
+        nearestKey = item.dataset.key;
       }
     });
 
-    if (nearestJob && nearestJob !== currentJob) {
-      currentJob = nearestJob;
+    if (nearestKey && nearestKey !== currentKey) {
+      currentKey = nearestKey;
       // active 切替
     }
   };
@@ -95,7 +94,7 @@ function initJobListingScroll() {
 }
 ```
 
-スクロールするたびに全カードの位置を測り、**ビューポート中央に最も近い1枚** を active にする実装です。
+スクロールするたびに全要素の位置を測り、**ビューポート中央に最も近い1つ** を active にする実装です。
 
 ## なぜこれで解決するか
 
@@ -104,15 +103,15 @@ function initJobListingScroll() {
 
 状態駆動だと：
 - イベントの取りこぼし／重複に依存しない
-- 一番上まで戻れば必ず1番目のカードが「中央に最も近い」状態になる
-- 中間カードも中央通過の瞬間に必ず最近接になる → 飛ばない
+- 一番上まで戻れば必ず1番目の要素が「中央に最も近い」状態になる
+- 中間要素も中央通過の瞬間に必ず最近接になる → 飛ばない
 
 ## パフォーマンスの工夫
 
 scroll イベントは秒間数十〜数百回発火することがありますが、画面描画は60fpsが上限です。
 `requestAnimationFrame` で1フレームに1回に間引き、`ticking` フラグでさらに重複排除しています。
 
-`currentJob` 比較で「同じ要素を再度 active にする」DOM操作もスキップしています。
+`currentKey` 比較で「同じ要素を再度 active にする」DOM操作もスキップしています。
 
 ## 設計上の気づき
 
