@@ -4,7 +4,7 @@ emoji: "🧪"
 type: "tech"
 topics: ["vitest", "typescript", "testing", "個人開発"]
 published: true
-published_at: 2026-07-28 18:00
+published_at: 2026-08-01 18:00
 ---
 
 Vitestで基本のテストを4パターン書き終えたとき、ふと手が止まりました。
