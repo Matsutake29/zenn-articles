@@ -1,0 +1,73 @@
+name: drip publish
+
+# _queue/ に待機させた記事を1日1本だけ articles/ へ昇格させる。
+# Zennのレートリミット（直近24時間の投稿数・予約中を含む）に触れずに
+# 在庫を消化するための仕組み。詳細は scripts/drip.py のdocstring。
+
+on:
+  schedule:
+    # 00:00 UTC = 09:00 JST。公開は既定で当日18:00なので9時間の余裕がある
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'ファイルを変更せず動作だけ確認する'
+        type: boolean
+        default: false
+      publish_time:
+        description: '公開時刻（JST・HH:MM）'
+        type: string
+        default: '18:00'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drip-publish
+  cancel-in-progress: false
+
+jobs:
+  drip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 1本昇格させる
+        id: drip
+        run: |
+          python3 scripts/drip.py \
+            ${{ inputs.dry_run && '--dry-run' || '' }} \
+            --publish-time "${{ inputs.publish_time || '18:00' }}" \
+            | tee drip.log
+          echo "exit=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: push する
+        if: ${{ !inputs.dry_run }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "変更なし。pushしません。"
+            exit 0
+          fi
+          slug=$(git status --porcelain articles | awk '{print $NF}' | xargs -r -n1 basename | sed 's/\.md$//' | head -1)
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A articles _queue
+          git commit -m "publish: ${slug:-記事を1本昇格} (drip)"
+          git push
+
+      - name: 実行結果をまとめる
+        if: always()
+        run: |
+          {
+            echo '### zenn drip'
+            echo ''
+            echo '```'
+            cat drip.log 2>/dev/null || echo '(ログなし)'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 公開の取りこぼしがあれば失敗させる
+        if: ${{ steps.drip.outputs.exit != '0' }}
+        run: |
+          echo "::error::公開予定日を過ぎたのに公開されていない記事があります。https://zenn.dev/dashboard/deploys を確認してください。"
+          exit 1

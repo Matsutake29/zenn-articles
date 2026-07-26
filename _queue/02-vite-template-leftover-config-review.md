@@ -3,8 +3,7 @@ title: "環境構築が終わった\"つもり\"の後に、棚卸しレビュ�
 emoji: "🔍"
 type: "tech"
 topics: ["vite", "react", "githubactions", "個人開発", "typescript"]
-published: true
-published_at: 2026-07-31 18:00
+published: false
 ---
 
 ## 環境構築、一気に終わらせた後の話

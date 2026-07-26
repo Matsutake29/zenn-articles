@@ -3,8 +3,7 @@ title: "SSHが止まっている間に、WordPress記事51本を一括変更し�
 emoji: "🔧"
 type: "tech"
 topics: ["wordpress", "restapi", "php", "web制作"]
-published: true
-published_at: 2026-07-30 18:00
+published: false
 ---
 
 自分のブログに、消しても消しても謎の自動コメントが増えていく現象が起きました。
