@@ -6,8 +6,11 @@ name: drip publish
 
 on:
   schedule:
-    # 00:00 UTC = 09:00 JST。公開は既定で当日18:00なので9時間の余裕がある
-    - cron: '0 0 * * *'
+    # 00:00-08:00 UTC = 09:00-17:00 JST の毎時。実際に昇格するのは
+    # drip.py の間隔ガード（前回から24時間15分）を満たした最初のtickだけ。
+    # 毎日15分ずつ後ろへずれ、17:00を越えた日は翌朝に回る（月1回程度）。
+    # 公開は published_at で当日18:00に固定されるので読者側の時刻は動かない。
+    - cron: '0 0-8 * * *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -18,6 +21,10 @@ on:
         description: '公開時刻（JST・HH:MM）'
         type: string
         default: '18:00'
+      force:
+        description: '昇格間隔のガードを無視する（手動リカバリ用）'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -37,6 +44,7 @@ jobs:
         run: |
           python3 scripts/drip.py \
             ${{ inputs.dry_run && '--dry-run' || '' }} \
+            ${{ inputs.force && '--force' || '' }} \
             --publish-time "${{ inputs.publish_time || '18:00' }}" \
             | tee drip.log
           echo "exit=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"

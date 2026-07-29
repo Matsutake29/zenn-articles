@@ -11,6 +11,12 @@ Zennのレートリミットは「直近24時間の投稿数（投稿予約中�
 Zennが記事として読むのは articles/ 直下だけなので、_queue/ に置いた
 ファイルはカウントされない。ここから毎日1本ずつ流す。
 
+24時間の起点は「前回Zennに登録された時刻」であって暦日ではない。毎日同じ
+cron時刻に昇格させると、Actionsのスケジュール遅延がブレるだけで境界を割る
+（2026-07-28に前回受理から23時間56分で昇格し、4分足りずに弾かれた）。
+そのため昇格間隔を実時刻で見張り、MIN_INTERVAL に満たなければ見送る。
+cronを日に何度も回し、条件を満たした最初のtickで昇格させる前提の設計。
+
 使い方:
     python3 scripts/drip.py              # 1本昇格させる
     python3 scripts/drip.py --dry-run    # 何が起きるかだけ表示する
@@ -33,6 +39,14 @@ ZENN_USER = os.environ.get("ZENN_USER", "matsutake_prgrm")
 
 # _queue/ のファイル名は昇格順を先頭2桁で持つ（例: 01-my-article.md）
 QUEUE_NAME = re.compile(r"^(\d{2})-(.+\.md)$")
+
+# 前回の昇格時刻。articles/ の published_at は「表示上の公開時刻」であって
+# Zennに登録された時刻ではないため、実時刻を別に持つ必要がある
+STATE = QUEUE / ".last-promoted"
+
+# 昇格の最低間隔。24時間ちょうどだとcronの実行揺れで境界を割るので余裕を持たせる。
+# ここを広げるほど昇格時刻が毎日後ろへずれ、ウィンドウ末尾に達した日は1日飛ぶ
+MIN_INTERVAL = datetime.timedelta(hours=24, minutes=15)
 
 
 def log(msg):
@@ -126,6 +140,42 @@ def verify_previous(today):
     return True
 
 
+def last_promoted_at():
+    """前回の昇格時刻。記録が無いか壊れていれば None（＝ガードを適用しない）。"""
+    if not STATE.exists():
+        return None
+    raw = STATE.read_text(encoding="utf-8").strip()
+    try:
+        return datetime.datetime.fromisoformat(raw)
+    except ValueError:
+        log(f"[warn] {STATE.name} を読めないので間隔ガードを飛ばします: {raw!r}")
+        return None
+
+
+def interval_ok(now, force):
+    """前回の昇格から MIN_INTERVAL 以上空いているか。"""
+    prev = last_promoted_at()
+    if prev is None:
+        return True
+
+    elapsed = now - prev
+    if force:
+        log(f"[force] 前回の昇格から {format_delta(elapsed)}。ガードを無視して昇格します。")
+        return True
+    if elapsed >= MIN_INTERVAL:
+        return True
+
+    wait = prev + MIN_INTERVAL
+    log(f"[skip] 前回の昇格から {format_delta(elapsed)} しか経っていません。")
+    log(f"       Zennの24時間判定を割るため見送ります（{wait:%m-%d %H:%M} 以降のtickで昇格）。")
+    return False
+
+
+def format_delta(delta):
+    total = int(delta.total_seconds())
+    return f"{total // 3600}時間{total % 3600 // 60}分"
+
+
 def pick_next():
     """_queue/ から次に出す1本を返す。無ければ None。"""
     candidates = []
@@ -141,12 +191,15 @@ def pick_next():
     return candidates[0]
 
 
-def promote(today, publish_time, dry_run):
+def promote(today, now, publish_time, dry_run, force):
     # すでに同じ日に公開予定の記事があれば見送る（1日1本を守る）
     for path in sorted(ARTICLES.glob("*.md")):
         if scheduled_date(path) == today:
             log(f"[skip] {today} は {path.stem} が公開予定です。今日は昇格させません。")
             return True
+
+    if not interval_ok(now, force):
+        return True
 
     picked = pick_next()
     if not picked:
@@ -180,9 +233,11 @@ def promote(today, publish_time, dry_run):
 
     dst.write_text("---\n" + fm + "---\n" + body, encoding="utf-8")
     src.unlink()
+    STATE.write_text(now.isoformat(timespec="seconds") + "\n", encoding="utf-8")
 
     remaining = len([p for p in QUEUE.glob("*.md") if QUEUE_NAME.match(p.name)])
     log(f"[promote] 完了。_queue/ の残り: {remaining}本")
+    log(f"          次に昇格できるのは {now + MIN_INTERVAL:%m-%d %H:%M} 以降です。")
     return True
 
 
@@ -192,6 +247,9 @@ def main():
     parser.add_argument("--publish-time", default="18:00", help="公開時刻（JST・既定 18:00）")
     parser.add_argument("--skip-verify", action="store_true", help="前回分の公開照合を省く")
     parser.add_argument("--today", help="基準日をYYYY-MM-DDで上書きする（動作確認・手動リカバリ用）")
+    parser.add_argument(
+        "--force", action="store_true", help="昇格間隔のガードを無視する（手動リカバリ用）"
+    )
     args = parser.parse_args()
 
     if not re.match(r"^\d{2}:\d{2}$", args.publish_time):
@@ -199,6 +257,7 @@ def main():
         return 2
 
     QUEUE.mkdir(exist_ok=True)
+    now = datetime.datetime.now(JST)
     if args.today:
         try:
             today = datetime.date.fromisoformat(args.today)
@@ -206,14 +265,14 @@ def main():
             log(f"[error] --today は YYYY-MM-DD 形式で指定してください: {args.today}")
             return 2
     else:
-        today = datetime.datetime.now(JST).date()
-    log(f"=== zenn drip / {today} (JST) ===")
+        today = now.date()
+    log(f"=== zenn drip / {now:%Y-%m-%d %H:%M} (JST) ===")
 
     ok = True
     if not args.skip_verify:
         ok = verify_previous(today)
 
-    if not promote(today, args.publish_time, args.dry_run):
+    if not promote(today, now, args.publish_time, args.dry_run, args.force):
         return 1
 
     # 昇格自体は済ませたうえで、取りこぼしがあれば失敗として通知する
