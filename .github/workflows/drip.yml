@@ -52,8 +52,11 @@ jobs:
       - name: push する
         if: ${{ !inputs.dry_run }}
         run: |
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "変更なし。pushしません。"
+          # 対象は articles / _queue だけ。全体を見ると drip.log（tee で作る
+          # untracked ファイル）を拾ってしまい、昇格なしのtickでも
+          # 早期exitに入らず git commit が「nothing to commit」で落ちる
+          if [ -z "$(git status --porcelain articles _queue)" ]; then
+            echo "昇格なし。pushしません。"
             exit 0
           fi
           slug=$(git status --porcelain articles | awk '{print $NF}' | xargs -r -n1 basename | sed 's/\.md$//' | head -1)
