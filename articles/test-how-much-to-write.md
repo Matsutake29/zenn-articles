@@ -3,7 +3,8 @@ title: "テストはどこまで書けばいいのか、個人開発で見つけ
 emoji: "🧪"
 type: "tech"
 topics: ["vitest", "typescript", "testing", "個人開発"]
-published: false
+published: true
+published_at: 2026-07-31 18:00
 ---
 
 Vitestで基本のテストを4パターン書き終えたとき、ふと手が止まりました。
