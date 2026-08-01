@@ -3,7 +3,8 @@ title: "配色を勘で決めず、それでもdesign.mdは作らなかった話
 emoji: "🎨"
 type: "tech"
 topics: ["css", "tailwindcss", "デザイン", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-01 18:00
 ---
 
 個人開発でアプリを作るとき、配色をどう決めていますか。
