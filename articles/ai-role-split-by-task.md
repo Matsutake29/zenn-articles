@@ -3,7 +3,8 @@ title: "同じプロジェクトで、テストは自分で書きUIはAIに任�
 emoji: "🤝"
 type: "idea"
 topics: ["ai", "testing", "react", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-02 18:00
 ---
 
 個人開発でAIとペアを組むとき、「どこまで自分で書いて、どこからAIに任せるか」で毎回悩みます。
