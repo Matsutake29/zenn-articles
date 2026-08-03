@@ -6,15 +6,6 @@ topics: ["css", "tailwindcss", "アクセシビリティ", "ux", "個人開発"]
 published: false
 ---
 
-<!-- 【公開前チェック】
-
-     ■ 事実確認
-     Tailwind v4 の hover: が @media (hover:hover) に包まれることは
-     生成CSS（dist/assets/index-*.css）で確認済み
-
-     ■ 公開順の制約なし
--->
-
 自作アプリのUI実装が終わって、マージした直後のことです。
 
 PCのブラウザで触ってみて「あれ、ボタンのホバーアクションなくない？」と気づきました。

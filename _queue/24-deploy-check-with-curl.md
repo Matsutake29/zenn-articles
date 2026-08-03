@@ -6,15 +6,6 @@ topics: ["vercel", "vite", "パフォーマンス", "http", "個人開発"]
 published: false
 ---
 
-<!-- 【公開前チェック】
-
-     ■ 数値の出所（すべて plate-calculator の実測）
-     初回ロード 68.5kB（brotli後）/ リージョン hnd1 / CSS 12.8kB
-     Lighthouse 4項目100点・FCP 1.2s・LCP 1.2s・TBT 0ms・CLS 0
-
-     ■ 公開URL: https://plate-calculator-zeta.vercel.app/
--->
-
 自作アプリをVercelにデプロイしました。ブラウザで開いたら普通に表示されて、これで工程完了……のつもりでした。
 
 念のため `curl -I` でヘッダを見たら、そこそこ大きい問題が出てきました。

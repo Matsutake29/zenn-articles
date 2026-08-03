@@ -6,16 +6,6 @@ topics: ["github", "git", "初心者", "ポートフォリオ"]
 published: false
 ---
 
-<!-- 【公開前チェック】
-
-     ■ 数値はすべて 2026-07-29 の実測値。公開前に測り直すこと
-       - 変更前 332 contributions / 変更後 528
-       - 7月のコミット 48件（4リポジトリ）→ 209件（5リポジトリ）
-     ■ GitHub の仕様（default branch のみカウント）は公式ドキュメントで裏取り済み
-       https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile
-     ■ スクリーンショットは Before / After の2枚を貼る（撮影済み）
--->
-
 転職activity用にGitHubを整えようと思って、自分の「草」を測ってみました。
 そうしたら、**3ヶ月ぶんのコミットが1つも記録されていない**ことに気づきました。
 

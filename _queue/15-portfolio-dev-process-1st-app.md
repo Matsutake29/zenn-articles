@@ -6,35 +6,6 @@ topics: ["個人開発", "ポートフォリオ", "開発プロセス", "振り�
 published: false
 ---
 
-<!-- 【下書きメモ・公開前に削除】
-     出典: .company/.career/portfolio/records/2026-07-28-1作目の振り返り（プレート計算アプリ）.md
-     方針（2026-07-28 本人判断）: 2作目で検証したらリライトする前提で、先に出す。
-     完成を待たずに「1本目の実証」として書く。
-
-     ■ 公開順の制約（重要・2026-07-28 zenn-ready で確定）
-     この記事は工程ごとの記事7本へリンクしている束ね記事なので、
-     リンク先が未公開だと404になる。**08-02 より後（＝いちばん最後）に公開すること。**
-
-       07-30 18:00  test-how-much-to-write            ← リンク先
-       07-31 18:00  color-decision-and-design-tokens  ← リンク先
-       08-01 18:00  ai-role-split-by-task             ← リンク先
-       08-02 18:00  plate-step-from-inventory         ← リンク先（最後・2026-07-28 追加）
-
-     公開済み: vite-template-leftover-config-review / publish-repo-cleanup-with-ai /
-               git-flow-github-flow-difference-learned
-     ※ドリップは 07-29 をスキップする（publish-repo-cleanup が 18:00 で埋めているため。
-       scripts/drip.py L145「すでに同じ日に公開予定の記事があれば見送る」）。
-       上の日付はこれを織り込んだ予測。**弾かれると後ろが全部ずれるので公開前に実物を開いて確認する。**
-
-     ■ 検証済み（2026-07-28 zenn-ready）
-     - テスト32件: 素材ファイルの再測定値（npm test・91ms）と一致
-     - 「grepで23件と数えた」: 同じ grep を実行して23件を再現。記述どおり
-     - README 3h→1h / 作品ページ40分 / IPF44ページ・誤り2件 / README誤り4件: すべて素材ファイルと一致
-     - 掲載ページ https://mt-tk.com/plate-calculator/ は 2026-07-28 に公開済み
-
-     ■ 残り
-     - Zennのレートリミット回避のため _queue へ投入する（articles/ へ直接置かない） -->
-
 Web制作のコーダーからフロントエンドエンジニアへの転向を目指していて、その1本目として
 パワーリフティング向けのプレート計算アプリを作りました。
 

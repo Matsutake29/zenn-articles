@@ -6,16 +6,6 @@ topics: ["vitest", "typescript", "react", "テスト", "個人開発"]
 published: false
 ---
 
-<!-- 【公開前チェック】
-
-     ■ 公開順の制約
-     冒頭で「テストはどこまで書けばいいのか」（test-how-much-to-write）へリンクしている。
-     **あちらの公開後に出すこと。** 未公開だと404になる。
-
-     ■ 素材
-     .career/portfolio/apps/plate-calculator/設計思想.md（2026-07-27）
--->
-
 以前、[テストはどこまで書けばいいのか、個人開発で見つけた3つの線引き](https://zenn.dev/matsutake_prgrm/articles/test-how-much-to-write)という記事を書きました。
 エラーケースは理論上いくらでも増やせるので、どこで止めるかを決めた話です。
 

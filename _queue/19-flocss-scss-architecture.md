@@ -6,16 +6,6 @@ topics: ["sass", "css", "flocss", "wordpress", "設計"]
 published: false
 ---
 
-<!-- 【公開前チェック】
-
-     ■ 現行テンプレート（wp-theme-flocss-base）と突き合わせ済み（2026-07-29）
-     - コンパイルは npm run css（Live Sass Compiler は使用しない運用に変更済み）
-     - url() はルート相対パスを基本とする方針に変更済み
-     - mixin ファイル名は _mixins.scss（複数形）
-
-     ■ 案件が特定できる情報は書かない
--->
-
 WordPressの受託でコーディングをしていて、SCSSの構成はFLOCSSベースで固定しています。
 案件ごとに考え直すのをやめて、テンプレートとして持っている形です。
 

@@ -49,6 +49,9 @@ ZENN_USER = os.environ.get("ZENN_USER", "matsutake_prgrm")
 # _queue/ のファイル名は昇格順を先頭2桁で持つ（例: 01-my-article.md）
 QUEUE_NAME = re.compile(r"^(\d{2})-(.+\.md)$")
 
+# 本文の先頭に残った下書きメモ（→ strip_leading_comments）
+LEADING_COMMENT = re.compile(r"\A\s*<!--.*?-->[ \t]*\n", re.S)
+
 # 前回の昇格時刻。articles/ の published_at は「表示上の公開時刻」であって
 # Zennに登録された時刻ではないため、実時刻を別に持つ必要がある
 STATE = QUEUE / ".last-promoted"
@@ -75,6 +78,21 @@ def parse_frontmatter(text):
     if end == -1:
         return None, text
     return text[4 : end + 1], text[end + 5 :]
+
+
+def strip_leading_comments(body):
+    """本文冒頭のHTMLコメントを落とす。
+
+    下書き側（/zenn-ready）は検証メモを `<!-- 【公開前チェック】 ... -->` として
+    frontmatterの直後に置く。ZennのMarkdownはHTMLを許可しないため、これが
+    残ったまま公開されると本文の先頭に生テキストで出る（2026-08-04に実際に出た）。
+    コピー時に消し忘れても事故らないよう、昇格の直前でも落とす。
+    """
+    while True:
+        stripped = LEADING_COMMENT.sub("", body, count=1)
+        if stripped == body:
+            return body.lstrip("\n")
+        body = stripped
 
 
 def get_field(fm, key):
@@ -251,6 +269,8 @@ def promote(now, publish_time, dry_run, force):
     if fm is None:
         log(f"[error] {src.name} にfrontmatterがありません。")
         return False, False
+
+    body = strip_leading_comments(body)
 
     at = f"{next_publish_at(now, publish_time):%Y-%m-%d %H:%M}"
     fm = set_field(fm, "published", "true")

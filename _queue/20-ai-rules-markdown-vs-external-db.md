@@ -6,26 +6,6 @@ topics: ["ai", "claudecode", "notion", "markdown", "個人開発"]
 published: false
 ---
 
-<!-- 【公開前チェック】
-
-     ■ 「外部DBはダメ」ではなく「規模によって最適解が違う」に着地させる。
-        チームなら必要・一人だと便益が効かない、という整理。
-
-     ■ 事実確認
-     AGENTS.md は OpenAI発 → Linux Foundation の Agentic AI Foundation が管理
-     2026年半ばで28ツール以上が対応
-     Claude Code のネイティブ対応は未実装（GitHub issue #6235）
-     → 公開時点で状況が変わっていないか確認すること
-
-     ■ 再確認済み（2026-07-31・publish-sprint）
-     - AGENTS.md の管理体制は記述どおり。AAIF は MCP・goose と同じ場所で、
-       AGENTS.md は OpenAI からの拠出プロジェクト。**変更なし**
-     - Claude Code のネイティブ非対応も**継続中**（Claude Code 2.1.201 時点）。
-       issue #6235 は 5,200+ reactions で未対応要望の最大クラスターのまま
-     - 補足として使えそうな材料: 公式のワークアラウンドは `ln -s AGENTS.md CLAUDE.md`。
-       本文に足すかは本人判断（軽量readyでは肉付けしていない）
--->
-
 作業ルールや学習ログを、全部Markdownのファイルで管理しています。
 gitで履歴を持たせて、AIエージェントに読ませる運用です。
 

@@ -6,17 +6,6 @@ topics: ["css", "typography", "デザイン", "アクセシビリティ", "フ�
 published: false
 ---
 
-<!-- 【公開前チェック】
-
-     ■ 裏取り済み（2026-07-29）
-     - irradiation illusion（明るい文字が暗い背景で太く見える）: nerdy.dev / TypeDrawers
-     - -webkit-font-smoothing: antialiased はグレースケール化で細くなる: MDN / dbushell.com
-     - ハイコントラスト書体の細線は小サイズ・低解像度で消える: 一般的なタイポグラフィの知見
-     - 明朝＝縦画が太く横画が細い: Adobe公式ブログ
-
-     ■ 出典リンクは本文末尾に記載
--->
-
 自分のサイトに作品紹介のページを新設して、本文を Shippori Mincho B1（明朝体）で組みました。
 
 上品な見た目になって満足していたのですが、ダークモードで開いたら**明らかに読みにくい。**

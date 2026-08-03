@@ -6,16 +6,6 @@ topics: ["tailwindcss", "css", "vite", "wordpress", "個人開発"]
 published: false
 ---
 
-<!-- 【公開前チェック】
-
-     ■ 公開順の制約
-     冒頭で前編 tailwind-from-flocss-perspective へリンクしている。
-     未公開だと404になるので **前編の公開後に出すこと。**
-
-     ■ 数値の出所
-     CSSサイズ 12.76kB / gzip 3.54kB は plate-calculator の実測値（2026-07-26時点）
--->
-
 前編（[FLOCSS実務者が初めてTailwindを使って、誤解していたこと3つ](https://zenn.dev/matsutake_prgrm/articles/tailwind-from-flocss-perspective)）で、Tailwindの任意値記法について書きました。
 `gap-[3px]` と書けば3pxのgapが当たる、というやつです。
 
