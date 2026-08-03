@@ -3,7 +3,8 @@ title: "Zennの予約投稿はレートリミットを回避できない（4本p
 emoji: "🚰"
 type: "tech"
 topics: ["zenn", "githubactions", "ci", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-04 06:30
 ---
 
 <!-- 2026-07-26 のセッションで実際に踏んだ話。2026-07-28 に /zenn-ready で検証済み。
