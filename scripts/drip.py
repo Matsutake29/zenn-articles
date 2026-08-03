@@ -17,6 +17,15 @@ cron時刻に昇格させると、Actionsのスケジュール遅延がブレる
 そのため昇格間隔を実時刻で見張り、MIN_INTERVAL に満たなければ見送る。
 cronを日に何度も回し、条件を満たした最初のtickで昇格させる前提の設計。
 
+昇格時刻は毎日15分以上うしろへずれる。これは仕様であって不具合ではない。
+2026-08-03にウィンドウ（当時09:00-12:00の3tick）の末尾を越えて1日飛び、
+X告知だけが先に出て404を晒したため、cronを24時間ぶんに広げた。
+条件を満たした最初のtickで必ず昇格するので、もう飛ばない。
+
+公開日時（published_at）は昇格時刻から切り離し、articles/ にある
+最後の公開予定日の翌日に置く。昇格が何時になっても読者から見える公開は
+毎日18:00のまま動かない（→ next_publish_at）。
+
 使い方:
     python3 scripts/drip.py              # 1本昇格させる
     python3 scripts/drip.py --dry-run    # 何が起きるかだけ表示する
@@ -45,8 +54,13 @@ QUEUE_NAME = re.compile(r"^(\d{2})-(.+\.md)$")
 STATE = QUEUE / ".last-promoted"
 
 # 昇格の最低間隔。24時間ちょうどだとcronの実行揺れで境界を割るので余裕を持たせる。
-# ここを広げるほど昇格時刻が毎日後ろへずれ、ウィンドウ末尾に達した日は1日飛ぶ
+# 実測: 18h37m=受理 / 23h56m=拒否 / 24h15m以上=受理(3/3)。24時間付近は
+# 残枠が直近の投稿ペースで変動するため通るか通らないか予測できない
 MIN_INTERVAL = datetime.timedelta(hours=24, minutes=15)
+
+# 昇格が止まったと判断してジョブを失敗させるまでの時間。MIN_INTERVAL を
+# 大きく超えて見送りが続くのは、キューの詰まりか設定ミスが疑わしい
+STALL_AFTER = datetime.timedelta(hours=48)
 
 
 def log(msg):
@@ -88,6 +102,25 @@ def scheduled_date(path):
     if not m:
         return None
     return datetime.date(*(int(g) for g in m.groups()))
+
+
+def next_publish_at(now, publish_time):
+    """公開予定日時を決める。基準は「articles/ の最後の公開予定日の翌日」。
+
+    昇格時刻は MIN_INTERVAL のぶん毎日うしろへずれるが、公開日をそこに紐づけると
+    ずれがそのまま読者側に出てしまう。articles/ の最後の1本から数えることで、
+    昇格が何時になっても公開は1日1本・毎日 publish_time のまま動かない。
+
+    昇格が publish_time を回った時刻に起きると当日枠には入れられないので翌日へ送る。
+    このとき公開日は飛ばない（翌日ぶんの枠がそのまま1日先へずれるだけ）。
+    """
+    hh, mm = (int(x) for x in publish_time.split(":"))
+    dates = [d for d in (scheduled_date(p) for p in ARTICLES.glob("*.md")) if d]
+    base = max(dates) + datetime.timedelta(days=1) if dates else now.date()
+    at = datetime.datetime.combine(base, datetime.time(hh, mm), tzinfo=JST)
+    while at <= now:
+        at += datetime.timedelta(days=1)
+    return at
 
 
 def fetch_published_slugs():
@@ -191,34 +224,35 @@ def pick_next():
     return candidates[0]
 
 
-def promote(today, now, publish_time, dry_run, force):
-    # すでに同じ日に公開予定の記事があれば見送る（1日1本を守る）
-    for path in sorted(ARTICLES.glob("*.md")):
-        if scheduled_date(path) == today:
-            log(f"[skip] {today} は {path.stem} が公開予定です。今日は昇格させません。")
-            return True
+def promote(now, publish_time, dry_run, force):
+    """1本昇格させる。返り値は (エラーでないか, 昇格したか)。
 
+    「同じ日に公開予定の記事があれば見送る」判定はここに置かない。
+    公開日は next_publish_at が最後の1本の翌日に振るので重複しようがなく、
+    昇格ペースは MIN_INTERVAL が抑えている。判定を残すと、昇格が publish_time を
+    回って公開が翌日へ送られた日に、その翌日ぶんの昇格まで見送って1日おきになる。
+    """
     if not interval_ok(now, force):
-        return True
+        return True, False
 
     picked = pick_next()
     if not picked:
         log("[skip] _queue/ が空です。")
-        return True
+        return True, False
 
     order, slug_name, src = picked
     dst = ARTICLES / slug_name
     if dst.exists():
         log(f"[error] articles/{slug_name} が既にあります。slug重複の可能性があるため中止します。")
-        return False
+        return False, False
 
     text = src.read_text(encoding="utf-8")
     fm, body = parse_frontmatter(text)
     if fm is None:
         log(f"[error] {src.name} にfrontmatterがありません。")
-        return False
+        return False, False
 
-    at = f"{today.isoformat()} {publish_time}"
+    at = f"{next_publish_at(now, publish_time):%Y-%m-%d %H:%M}"
     fm = set_field(fm, "published", "true")
     fm = set_field(fm, "published_at", at)
     title = get_field(fm, "title") or slug_name
@@ -229,7 +263,7 @@ def promote(today, now, publish_time, dry_run, force):
 
     if dry_run:
         log("[dry-run] ファイルは変更していません。")
-        return True
+        return True, True
 
     dst.write_text("---\n" + fm + "---\n" + body, encoding="utf-8")
     src.unlink()
@@ -238,7 +272,15 @@ def promote(today, now, publish_time, dry_run, force):
     remaining = len([p for p in QUEUE.glob("*.md") if QUEUE_NAME.match(p.name)])
     log(f"[promote] 完了。_queue/ の残り: {remaining}本")
     log(f"          次に昇格できるのは {now + MIN_INTERVAL:%m-%d %H:%M} 以降です。")
-    return True
+    return True, True
+
+
+def stalled(now):
+    """昇格が長期間止まっていないか。在庫があるのに動いていなければ True。"""
+    prev = last_promoted_at()
+    if prev is None or now - prev < STALL_AFTER:
+        return False
+    return any(QUEUE_NAME.match(p.name) for p in QUEUE.glob("*.md"))
 
 
 def main():
@@ -246,7 +288,7 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="ファイルを変更せず動作だけ表示する")
     parser.add_argument("--publish-time", default="18:00", help="公開時刻（JST・既定 18:00）")
     parser.add_argument("--skip-verify", action="store_true", help="前回分の公開照合を省く")
-    parser.add_argument("--today", help="基準日をYYYY-MM-DDで上書きする（動作確認・手動リカバリ用）")
+    parser.add_argument("--today", help="公開照合の基準日をYYYY-MM-DDで上書きする（動作確認用）")
     parser.add_argument(
         "--force", action="store_true", help="昇格間隔のガードを無視する（手動リカバリ用）"
     )
@@ -272,8 +314,15 @@ def main():
     if not args.skip_verify:
         ok = verify_previous(today)
 
-    if not promote(today, now, args.publish_time, args.dry_run, args.force):
+    promote_ok, promoted = promote(now, args.publish_time, args.dry_run, args.force)
+    if not promote_ok:
         return 1
+
+    if not promoted and stalled(now):
+        log("")
+        log(f"[stall] 前回の昇格から {format_delta(now - last_promoted_at())} 経っているのに")
+        log("        _queue/ に在庫が残ったまま昇格していません。設定かキューを確認してください。")
+        ok = False
 
     # 昇格自体は済ませたうえで、取りこぼしがあれば失敗として通知する
     return 0 if ok else 1
