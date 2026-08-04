@@ -3,9 +3,9 @@ title: "FLOCSS実務者が初めてTailwindを使って、誤解していたこ�
 emoji: "🎨"
 type: "tech"
 topics: ["tailwindcss", "css", "sass", "react", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-05 18:00
 ---
-
 WordPressの受託でコーディングを2年やってきました。FLOCSSでクラスを分類して、SCSSでデザインカンプを1px単位で詰める。
 そういう作り方が身体に入っています。
 
