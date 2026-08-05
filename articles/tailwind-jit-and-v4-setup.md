@@ -3,9 +3,9 @@ title: "gap-[3px] はどこから来るのか——Tailwindを「CSSを作る機
 emoji: "⚙️"
 type: "tech"
 topics: ["tailwindcss", "css", "vite", "wordpress", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-06 18:00
 ---
-
 前編（[FLOCSS実務者が初めてTailwindを使って、誤解していたこと3つ](https://zenn.dev/matsutake_prgrm/articles/tailwind-from-flocss-perspective)）で、Tailwindの任意値記法について書きました。
 `gap-[3px]` と書けば3pxのgapが当たる、というやつです。
 
