@@ -3,9 +3,9 @@ title: "テストが21本すべて通るのに、機能が壊れていた"
 emoji: "🧪"
 type: "tech"
 topics: ["vitest", "typescript", "react", "テスト", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-07 18:00
 ---
-
 以前、[テストはどこまで書けばいいのか、個人開発で見つけた3つの線引き](https://zenn.dev/matsutake_prgrm/articles/test-how-much-to-write)という記事を書きました。
 エラーケースは理論上いくらでも増やせるので、どこで止めるかを決めた話です。
 
