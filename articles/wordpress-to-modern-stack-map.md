@@ -3,9 +3,9 @@ title: "WordPress受託2年の地図に、Next.js / Supabase / Vercel を重ね�
 emoji: "🗺️"
 type: "tech"
 topics: ["nextjs", "supabase", "vercel", "wordpress", "学習"]
-published: false
+published: true
+published_at: 2026-08-08 18:00
 ---
-
 WordPressの受託でコーディングを2年やってきて、いまフロントエンドに軸足を移そうとしています。
 TypeScriptを一通りやって、Next.js に入る手前あたりです。
 
