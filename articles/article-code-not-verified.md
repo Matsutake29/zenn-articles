@@ -3,9 +3,9 @@ title: "記事に載せたコードが「動かない書き方」になってい
 emoji: "📝"
 type: "tech"
 topics: ["tailwindcss", "css", "zenn", "ライティング", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-09 18:00
 ---
-
 書いた記事を公開する前に、載せているコードを実装ファイルと突き合わせるチェックをやりました。
 
 **そのままではCSSが解決されない書き方**が見つかりました。他人が読んでコピペしたら動きません。
