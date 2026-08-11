@@ -3,9 +3,9 @@ title: "GitHubの草が3ヶ月ぶん記録されていなかった — default b
 emoji: "🌱"
 type: "tech"
 topics: ["github", "git", "初心者", "ポートフォリオ"]
-published: false
+published: true
+published_at: 2026-08-11 18:00
 ---
-
 転職activity用にGitHubを整えようと思って、自分の「草」を測ってみました。
 そうしたら、**3ヶ月ぶんのコミットが1つも記録されていない**ことに気づきました。
 
