@@ -3,9 +3,9 @@ title: "「組めない重量」を入力させないために、入力の刻み
 emoji: "🏋️"
 type: "tech"
 topics: ["typescript", "react", "個人開発", "設計", "vitest"]
-published: false
+published: true
+published_at: 2026-08-12 18:00
 ---
-
 パワーリフティング向けのプレート計算アプリを作りました。
 
 https://plate-calculator-zeta.vercel.app/
