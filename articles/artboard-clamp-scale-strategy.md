@@ -3,9 +3,9 @@ title: "1920pxのカンプを比例で縮める——clamp を全プロパティ
 emoji: "📐"
 type: "tech"
 topics: ["css", "sass", "レスポンシブ", "web制作", "設計"]
-published: false
+published: true
+published_at: 2026-08-14 18:00
 ---
-
 デザインカンプが1920px幅で来る受託案件で、PCの中間幅（1280〜1919px）の可変対応をどうするかという話です。
 
 これまでは中間幅用のブレイクポイントを足して個別に調整していました。
