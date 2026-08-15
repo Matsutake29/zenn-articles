@@ -3,9 +3,9 @@ title: "ダークモード対応で同じ穴を2回踏んだ——ライトで�
 emoji: "🌗"
 type: "tech"
 topics: ["css", "tailwindcss", "アクセシビリティ", "デザイン", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-15 18:00
 ---
-
 自作アプリでダークモード対応をしていて、**同じ構造のバグを2回踏みました。**
 
 1回目は「まあ見落としだな」で済ませられます。
