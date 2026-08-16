@@ -3,9 +3,9 @@ title: "FLOCSSでSCSSを30件書いてきた構成と、なぜそのルールに
 emoji: "🗂️"
 type: "tech"
 topics: ["sass", "css", "flocss", "wordpress", "設計"]
-published: false
+published: true
+published_at: 2026-08-17 18:00
 ---
-
 WordPressの受託でコーディングをしていて、SCSSの構成はFLOCSSベースで固定しています。
 案件ごとに考え直すのをやめて、テンプレートとして持っている形です。
 
