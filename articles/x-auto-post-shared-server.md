@@ -3,9 +3,9 @@ title: "共用サーバーのcronでX投稿を自動化した——依存パッ�
 emoji: "🐦"
 type: "tech"
 topics: ["python", "x", "oauth", "cron", "自動化"]
-published: false
+published: true
+published_at: 2026-08-18 18:00
 ---
-
 書いたブログやZennの記事を、公開のタイミングに合わせてXへ告知したい。ただ毎回手で投稿するのを忘れる。
 
 というわけで、共用サーバーのcronからX APIを叩いて、キューに書いた投稿を自動で出す仕組みを作りました。
