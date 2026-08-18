@@ -50,6 +50,10 @@ ZENN_USER = os.environ.get("ZENN_USER", "matsutake_prgrm")
 QUEUE_NAME = re.compile(r"^(\d{2})-(.+\.md)$")
 
 # 本文の先頭に残った下書きメモ（→ strip_leading_comments）
+# 終端は「行頭に単独で置かれた -->」を優先して探す。非貪欲の .*? だけだと、
+# メモが本文中に <!--FOO--> のようなマーカーを引用しているとき、その行末の
+# --> をブロックの終端と読んで途中で切ってしまう（2026-08-18 に1本踏んだ）。
+LEADING_COMMENT_BLOCK = re.compile(r"\A\s*<!--.*?^-->[ \t]*\n", re.S | re.M)
 LEADING_COMMENT = re.compile(r"\A\s*<!--.*?-->[ \t]*\n", re.S)
 
 # 前回の昇格時刻。articles/ の published_at は「表示上の公開時刻」であって
@@ -89,10 +93,10 @@ def strip_leading_comments(body):
     コピー時に消し忘れても事故らないよう、昇格の直前でも落とす。
     """
     while True:
-        stripped = LEADING_COMMENT.sub("", body, count=1)
-        if stripped == body:
+        m = LEADING_COMMENT_BLOCK.match(body) or LEADING_COMMENT.match(body)
+        if not m:
             return body.lstrip("\n")
-        body = stripped
+        body = body[m.end():]
 
 
 def get_field(fm, key):
