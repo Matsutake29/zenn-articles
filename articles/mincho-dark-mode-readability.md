@@ -3,9 +3,9 @@ title: "ダークモードで明朝体の本文が読みにくくなる理由—
 emoji: "🌘"
 type: "tech"
 topics: ["css", "typography", "デザイン", "アクセシビリティ", "フォント"]
-published: false
+published: true
+published_at: 2026-08-19 18:00
 ---
-
 自分のサイトに作品紹介のページを新設して、本文を Shippori Mincho B1（明朝体）で組みました。
 
 上品な見た目になって満足していたのですが、ダークモードで開いたら**明らかに読みにくい。**
