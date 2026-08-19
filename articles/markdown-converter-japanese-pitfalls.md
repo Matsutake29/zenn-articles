@@ -3,9 +3,9 @@ title: "自作Markdown変換で日本語の改行が消えていた——公開�
 emoji: "🈁"
 type: "tech"
 topics: ["python", "markdown", "wordpress", "日本語", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-20 18:00
 ---
-
 ブログの投稿をスクリプトから流し込むために、Markdown → HTML の変換を自作しています。
 ライブラリを入れるほどの規模ではなかったので、必要な記法だけ自前で処理する方針でした。
 
