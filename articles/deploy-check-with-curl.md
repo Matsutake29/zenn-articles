@@ -3,9 +3,9 @@ title: "デプロイして「表示された」で終わらせない——curl -
 emoji: "📡"
 type: "tech"
 topics: ["vercel", "vite", "パフォーマンス", "http", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-21 18:00
 ---
-
 自作アプリをVercelにデプロイしました。ブラウザで開いたら普通に表示されて、これで工程完了……のつもりでした。
 
 念のため `curl -I` でヘッダを見たら、そこそこ大きい問題が出てきました。
