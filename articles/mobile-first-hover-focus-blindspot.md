@@ -3,9 +3,9 @@ title: "モバイルファーストで作ったらhoverが0件だった——PC�
 emoji: "🖱️"
 type: "tech"
 topics: ["css", "tailwindcss", "アクセシビリティ", "ux", "個人開発"]
-published: false
+published: true
+published_at: 2026-08-22 18:00
 ---
-
 自作アプリのUI実装が終わって、マージした直後のことです。
 
 PCのブラウザで触ってみて「あれ、ボタンのホバーアクションなくない？」と気づきました。
