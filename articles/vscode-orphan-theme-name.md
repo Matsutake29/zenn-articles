@@ -3,9 +3,9 @@ title: "拡張機能を入れたらVS Codeの配色が変わった——犯人�
 emoji: "🎭"
 type: "idea"
 topics: ["vscode", "設定", "トラブルシューティング"]
-published: false
+published: true
+published_at: 2026-08-23 18:00
 ---
-
 Word や Excel を VS Code 内で開ける拡張（Office Viewer）を入れました。
 
 入れた直後、**エディタ全体の配色が変わりました。** テーマなんて触っていないのに。
