@@ -3,9 +3,9 @@ title: "TypeScriptが読めなかったのは型のせいではなく、{} が6�
 emoji: "🔍"
 type: "tech"
 topics: ["typescript", "nextjs", "react", "初心者"]
-published: false
+published: true
+published_at: 2026-08-24 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
