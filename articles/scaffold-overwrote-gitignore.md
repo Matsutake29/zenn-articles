@@ -3,9 +3,9 @@ title: "create-next-app に .gitignore を上書きされて気づいた、git i
 emoji: "🦴"
 type: "tech"
 topics: ["nextjs", "git", "github", "初心者"]
-published: false
+published: true
+published_at: 2026-08-25 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
