@@ -3,9 +3,9 @@ title: "手書きのBento Gridは、CMS化した瞬間に破綻した"
 emoji: "🍱"
 type: "tech"
 topics: ["css", "grid", "nextjs", "設計"]
-published: false
+published: true
+published_at: 2026-08-26 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
