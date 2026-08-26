@@ -3,9 +3,9 @@ title: "WordPress の語彙で Next.js（App Router）を読む"
 emoji: "🗺️"
 type: "tech"
 topics: ["nextjs", "wordpress", "react", "approuter"]
-published: false
+published: true
+published_at: 2026-08-27 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
