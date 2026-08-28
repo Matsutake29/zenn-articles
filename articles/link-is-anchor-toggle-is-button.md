@@ -3,9 +3,9 @@ title: "リンクは<a>、開閉は<button>。カードの種類で要素を出�
 emoji: "🔗"
 type: "tech"
 topics: ["html", "アクセシビリティ", "react", "設計"]
-published: false
+published: true
+published_at: 2026-08-29 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
