@@ -3,9 +3,9 @@ title: 'next/fontで日本語フォントを使うとき、subsetsに"japanese"�
 emoji: "🔤"
 type: "tech"
 topics: ["nextjs", "googlefonts", "webフォント", "typescript"]
-published: false
+published: true
+published_at: 2026-08-30 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
