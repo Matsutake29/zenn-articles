@@ -3,9 +3,9 @@ title: "matcherに「保護したいパス」を書いたら、1時間後にロ�
 emoji: "🚪"
 type: "tech"
 topics: ["nextjs", "supabase", "認証", "個人開発", "approuter"]
-published: false
+published: true
+published_at: 2026-09-01 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
