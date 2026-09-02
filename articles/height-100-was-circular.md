@@ -3,9 +3,9 @@ title: "height: 100% は親の高さを見る。その親の高さは自分で�
 emoji: "📐"
 type: "tech"
 topics: ["css", "tailwindcss", "html", "個人開発", "flexbox"]
-published: false
+published: true
+published_at: 2026-09-02 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
