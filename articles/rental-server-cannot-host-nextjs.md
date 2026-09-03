@@ -3,9 +3,9 @@ title: "レンタルサーバーにNext.jsは置けない、という当たり�
 emoji: "🖥️"
 type: "tech"
 topics: ["nextjs", "vercel", "vps", "インフラ", "レンタルサーバー"]
-published: false
+published: true
+published_at: 2026-09-03 18:00
 ---
-
 ## 「Vercelは簡単すぎるのでは」から始まった
 
 ポートフォリオとして Next.js のアプリを作っていて、置き場所を考えていました。
