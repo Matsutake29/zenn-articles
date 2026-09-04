@@ -3,9 +3,9 @@ title: "偶然の一致が、間違った説明を「未確認」から「確認
 emoji: "🎯"
 type: "tech"
 topics: ["zod", "typescript", "テスト", "ai", "個人開発"]
-published: false
+published: true
+published_at: 2026-09-04 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
