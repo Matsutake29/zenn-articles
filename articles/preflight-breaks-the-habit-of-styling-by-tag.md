@@ -3,9 +3,9 @@ title: "h1が大きくならないのはバグではなく、タグで見た目�
 emoji: "🔤"
 type: "tech"
 topics: ["tailwindcss", "css", "html", "アクセシビリティ", "初心者"]
-published: false
+published: true
+published_at: 2026-09-05 18:00
 ---
-
 :::message
 Tailwind CSS を初めて本格的に使ったときに手が止まった話です。バージョンは v4。
 WordPress のテーマを書いてきた側から見ると、最初は「壊れている」ように見えました。
