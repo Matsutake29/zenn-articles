@@ -3,9 +3,9 @@ title: "公式サンプルをそのまま繋いでいたら、公開ページが
 emoji: "🧭"
 type: "tech"
 topics: ["supabase", "nextjs", "認証", "個人開発", "設計"]
-published: false
+published: true
+published_at: 2026-09-06 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
