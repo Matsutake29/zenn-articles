@@ -3,9 +3,9 @@ title: "「公式チュートリアル通りにやったのに動かない」の
 emoji: "📦"
 type: "tech"
 topics: ["nextjs", "pnpm", "npm", "環境構築", "セキュリティ"]
-published: false
+published: true
+published_at: 2026-09-07 18:00
 ---
-
 ## `pnpm install` の最後で止まった
 
 Next.js の公式チュートリアルを進めていて、最初のインストールで詰まりました。
