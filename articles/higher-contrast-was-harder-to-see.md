@@ -3,9 +3,9 @@ title: "コントラスト比が高いほうが見えにくかった——指標
 emoji: "👁️"
 type: "tech"
 topics: ["アクセシビリティ", "css", "デザイン", "wcag", "個人開発"]
-published: false
+published: true
+published_at: 2026-09-09 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
