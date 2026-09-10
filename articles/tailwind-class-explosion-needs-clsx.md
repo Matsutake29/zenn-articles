@@ -3,9 +3,9 @@ title: "クラス数が10倍になったからclsxが要る、という順序"
 emoji: "🧩"
 type: "tech"
 topics: ["tailwindcss", "react", "css設計", "flocss", "個人開発"]
-published: false
+published: true
+published_at: 2026-09-11 18:00
 ---
-
 ## Tailwind の記事に、なぜか毎回 clsx が出てくる
 
 Tailwind を使い始めたころ、紹介記事を読んでいると
