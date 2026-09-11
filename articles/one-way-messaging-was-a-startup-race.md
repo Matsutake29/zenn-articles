@@ -3,9 +3,9 @@ title: "一方向にしか通らないと思った通信の正体は、7秒の�
 emoji: "🔌"
 type: "tech"
 topics: ["claudecode", "ai", "unixsocket", "デバッグ", "macos"]
-published: false
+published: true
+published_at: 2026-09-12 18:00
 ---
-
 :::message
 Claude Code の cross-session messaging（別々に起動したセッション同士でメッセージを送り合う機能）を、
 仕事の記録用セッションとアプリ開発用セッションで試したときの記録です。
