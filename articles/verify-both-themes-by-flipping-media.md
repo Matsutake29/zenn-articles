@@ -3,9 +3,9 @@ title: "OS設定を触らずに、ライト/ダーク両方の画像切り替え
 emoji: "🌓"
 type: "tech"
 topics: ["css", "javascript", "darkmode", "devtools", "html"]
-published: false
+published: true
+published_at: 2026-09-13 18:00
 ---
-
 ## `<picture>` でテーマ追従させると、確認が2倍になる
 
 図やスクリーンショットをテーマに追従させるとき、`<picture>` を使うと CSS なしで書けます。
