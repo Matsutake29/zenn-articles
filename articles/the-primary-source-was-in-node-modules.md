@@ -3,9 +3,9 @@ title: "一次情報がnode_modulesに入っていた——読んだら自分の
 emoji: "📦"
 type: "tech"
 topics: ["nextjs", "ai", "ドキュメント", "個人開発", "agentsmd"]
-published: false
+published: true
+published_at: 2026-09-15 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
