@@ -3,9 +3,9 @@ title: "Zennのcanonicalは自分のURLで固定される——転載の正本�
 emoji: "🔗"
 type: "tech"
 topics: ["zenn", "seo", "canonical", "ブログ", "個人開発"]
-published: false
+published: true
+published_at: 2026-09-16 18:00
 ---
-
 :::message
 自分のブログと Zenn の使い分けを決めるときに調べた話です。
 **結論だけ先に書くと、Zenn 側から canonical を外部のURLに向けることはできませんでした。**
