@@ -3,9 +3,9 @@ title: "Supabaseのservice roleはRLSをバイパスするが、GRANTは効く �
 emoji: "🔑"
 type: "tech"
 topics: ["supabase", "postgresql", "rls", "nextjs"]
-published: false
+published: true
+published_at: 2026-09-17 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
