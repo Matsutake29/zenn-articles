@@ -3,9 +3,9 @@ title: "Tailwind v4は「使うな」と書いたコメントからもCSSを生�
 emoji: "💬"
 type: "tech"
 topics: ["tailwindcss", "css", "vscode", "nextjs"]
-published: false
+published: true
+published_at: 2026-09-18 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
