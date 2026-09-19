@@ -3,9 +3,9 @@ title: "vi.mock を外してもテストは落ちなかった。「無いと落�
 emoji: "🔌"
 type: "tech"
 topics: ["vitest", "nextjs", "react", "testing"]
-published: false
+published: true
+published_at: 2026-09-20 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
