@@ -3,9 +3,9 @@ title: "GitHub APIの未認証レート制限はIP単位なので、共有IPか�
 emoji: "🚦"
 type: "tech"
 topics: ["github", "api", "vercel", "nextjs"]
-published: false
+published: true
+published_at: 2026-09-21 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。GitHub のリポジトリ一覧を API で取ってカードにする処理の話です。
 
