@@ -3,9 +3,9 @@ title: "WordPressの「予約投稿の失敗」、原因はcronではなくpost_
 emoji: "🗓️"
 type: "tech"
 topics: ["wordpress", "wpcli", "mysql", "個人開発", "運用"]
-published: true
-published_at: 2026-09-19 18:00
+published: false
 ---
+
 WordPress の管理画面に、赤字で「**予約投稿の失敗**」が出ていました。
 
 この表示で検索すると、出てくる対策はほぼ cron 側です。WP-Cron はアクセスが無いと発火しないので、`DISABLE_WP_CRON` にして外部 cron を使う、あるいはプラグインで補う。自分もそれを疑いました。
