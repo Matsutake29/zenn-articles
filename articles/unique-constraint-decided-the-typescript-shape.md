@@ -3,9 +3,9 @@ title: "ER図のために置いたuniqueが、Supabaseの入れ子selectの返�
 emoji: "🧬"
 type: "tech"
 topics: ["supabase", "postgrest", "typescript", "postgresql"]
-published: false
+published: true
+published_at: 2026-09-25 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。外部フィードの記事をカードに表示する機能の話です。
 
