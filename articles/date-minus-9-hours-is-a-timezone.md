@@ -3,9 +3,9 @@ title: "date -d の \"-9 hours\" が引き算ではなくタイムゾーンと�
 emoji: "⏰"
 type: "tech"
 topics: ["linux", "shell", "bash", "運用", "トラブルシューティング"]
-published: false
+published: true
+published_at: 2026-09-26 18:00
 ---
-
 日時から9時間引いた値を作りたくて、GNU date にこう書きました。
 
 ```bash
