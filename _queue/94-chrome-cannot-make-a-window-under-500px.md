@@ -3,8 +3,7 @@ title: "Chromeの--window-sizeは500px未満に縮まない。390pxのスクシ�
 emoji: "📐"
 type: "tech"
 topics: ["chrome", "css", "responsive", "テスト"]
-published: true
-published_at: 2026-09-23 18:00
+published: false
 ---
 ダッシュボードをスマホ幅（390px）でスクリーンショットに撮ろうとしました。
 
