@@ -3,9 +3,9 @@ title: "Next.jsのServer Actionは関数に見えるが、実体はIDつきの�
 emoji: "🚪"
 type: "tech"
 topics: ["nextjs", "react", "security", "serveractions"]
-published: false
+published: true
+published_at: 2026-09-27 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
