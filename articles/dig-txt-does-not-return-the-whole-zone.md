@@ -3,9 +3,9 @@ title: "digでTXTを引いたらDMARCとDKIMが丸ごと抜けていた"
 emoji: "🔍"
 type: "tech"
 topics: ["dns", "dig", "dmarc", "dkim"]
-published: false
+published: true
+published_at: 2026-09-28 18:00
 ---
-
 自分のドメインに `.htaccess` でリダイレクトを1行足す作業をする前に、**壊してはいけないレコードを把握しよう**として `dig` を打ちました。
 
 ```bash
