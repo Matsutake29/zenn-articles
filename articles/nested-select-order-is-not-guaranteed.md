@@ -3,9 +3,9 @@ title: "Supabaseの入れ子selectが期待どおりの順で返ってきたが�
 emoji: "🎲"
 type: "tech"
 topics: ["supabase", "postgrest", "postgresql", "testing"]
-published: false
+published: true
+published_at: 2026-09-29 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。外部フィードの記事をカードに表示する機能の話です。
 
