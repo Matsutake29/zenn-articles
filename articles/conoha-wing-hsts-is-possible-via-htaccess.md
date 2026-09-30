@@ -3,9 +3,9 @@ title: "公式が「対応できない」と書いていた設定が、.htaccess
 emoji: "🪧"
 type: "tech"
 topics: ["conoha", "htaccess", "hsts", "セキュリティ", "apache"]
-published: false
+published: true
+published_at: 2026-10-01 18:00
 ---
-
 自分のサイトに HSTS（HTTP Strict Transport Security）を入れようとして、公式サポートに「対応できない」と書いてあるのを見つけました。諦めかけたのですが、確かめたら入りました。
 
 公式が間違っていたわけではありません。**答えている問いが違っていた**という話です。
