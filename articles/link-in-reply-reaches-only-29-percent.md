@@ -3,9 +3,9 @@ title: "Xの記事告知でリンクを返信にぶら下げたら、URLの到�
 emoji: "🔗"
 type: "tech"
 topics: ["x", "api", "python", "個人開発", "自動化"]
-published: false
+published: true
+published_at: 2026-10-03 18:00
 ---
-
 自分のブログや Zenn の記事を X（Twitter）で告知するために、Python で自動投稿ツールを作って運用しています。告知の出し方で1つ迷ったところがあって、半年運用して数字が出たので書きます。
 
 ## 本文に URL を混ぜず、返信にぶら下げる設計にした
