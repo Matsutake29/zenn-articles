@@ -3,8 +3,7 @@ title: "React Hook Formの値が送信後に消えるのは、React 19がform.re
 emoji: "🫗"
 type: "tech"
 topics: ["react", "nextjs", "reacthookform", "typescript", "form"]
-published: true
-published_at: 2026-10-02 18:00
+published: false
 ---
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。

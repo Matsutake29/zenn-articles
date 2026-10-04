@@ -3,8 +3,7 @@ title: "Next.js 公式ガイドどおりに Vitest を設定したら、2本目�
 emoji: "🧹"
 type: "tech"
 topics: ["vitest", "testinglibrary", "react", "nextjs"]
-published: true
-published_at: 2026-09-30 18:00
+published: false
 ---
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
