@@ -3,9 +3,9 @@ title: "macOSで書いたシェルスクリプトがLinuxで落ちた。2>/dev/n
 emoji: "🕳️"
 type: "tech"
 topics: ["bash", "shellscript", "macos", "linux", "cli"]
-published: false
+published: true
+published_at: 2026-10-05 18:00
 ---
-
 macOS で書いたシェルスクリプトを Linux で動かしたら、`File: unbound variable` で落ちました。
 
 スクリプトのどこにも `File` という変数はありません。原因は1行で、その1行には `2>/dev/null` が付いていました。
