@@ -3,8 +3,7 @@ title: "PostgreSQLのRLSで直感と逆だったこと2つ —— ポリシー�
 emoji: "🔓"
 type: "tech"
 topics: ["postgresql", "supabase", "rls", "security"]
-published: true
-published_at: 2026-10-04 18:00
+published: false
 ---
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
