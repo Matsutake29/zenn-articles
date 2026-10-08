@@ -3,9 +3,9 @@ title: "Supabaseのerrorを捨てていたので、正常と障害が同じ404�
 emoji: "🎭"
 type: "tech"
 topics: ["supabase", "nextjs", "postgresql", "個人開発", "エラーハンドリング"]
-published: false
+published: true
+published_at: 2026-10-09 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
