@@ -3,9 +3,9 @@ title: "Reactのkeyが決めていたのは描画の速さではなく、フォ�
 emoji: "🎯"
 type: "tech"
 topics: ["react", "nextjs", "frontend", "accessibility"]
-published: false
+published: true
+published_at: 2026-10-10 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。カードを ↑↓ ボタンで並び替える機能の話です。
 
