@@ -3,8 +3,7 @@ title: "DNSを追加した直後にdigを打ったら、確認そのものが待
 emoji: "🕰️"
 type: "tech"
 topics: ["dns", "dig", "cache", "conoha"]
-published: true
-published_at: 2026-10-08 18:00
+published: false
 ---
 サブドメインを1つ増やすため、CNAME を1行だけ追加しました。保存して1〜2分後、反映を確認しようと `dig` を打ちました。
 
