@@ -3,9 +3,9 @@ title: ".htaccessではRewriteRuleがRedirectMatchより先に動く —— 通�
 emoji: "🔀"
 type: "tech"
 topics: ["apache", "htaccess", "modrewrite", "wordpress"]
-published: false
+published: true
+published_at: 2026-10-11 18:00
 ---
-
 既存の `.htaccess` に**リダイレクトを1行足す**だけの作業をしました。足す前に「どっちが先に評価されるのか」を確かめたら、広く言われている順序と逆でした。
 
 ```apache
