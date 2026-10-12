@@ -3,9 +3,9 @@ title: "React Hook Formで型エラーが正しい入り口を教えてくれて
 emoji: "🧭"
 type: "tech"
 topics: ["react", "typescript", "reacthookform", "nextjs"]
-published: false
+published: true
+published_at: 2026-10-13 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
