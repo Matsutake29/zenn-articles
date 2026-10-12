@@ -117,51 +117,13 @@ create policy "users can view own feed entries"
   ));
 ```
 
-## ロール指定を省くと PUBLIC になる
+## ロール指定は省かない
 
 上の2本には `to anon` / `to authenticated` を付けています。ここは省けません。
 
-PostgreSQL の `CREATE POLICY` のドキュメントに、2つ並べて書いてあります。
+`to` を省くとポリシーは全ロール（`PUBLIC`）に適用され、同じテーブル・同じコマンドの permissive ポリシーは OR で足し算されます。`items` でこれを1度踏んでいて、ログイン中だけ他人の公開カードまで見えていました（経緯は[ブログ](https://blog.mt-tk.com/rls-policies-widened-access/)に書きました）。
 
-> All permissive policies which are applicable to a given query will be combined together using the Boolean "OR" operator.
-
-> The default is `PUBLIC`, which will apply the policy to all roles.
-
-つまり `to` を省くと**全ロールに適用され**、同じテーブル・同じコマンドのポリシーは
-**OR で足し算されます**。用途で分けたつもりでも、ロールで分かれていなければ、
-ログイン中は両方の条件が有効になります。
-
-### 実際に踏んだ（items）
-
-これは1度踏んでいます。`items` に「公開カードは誰でも」と「自分のカードは本人だけ」を
-両方ロール指定なしで書いたときです。
-
-```sql
--- 修正マイグレーションに残したコメント
--- ログイン中は (visible = true) OR (auth.uid() = user_id) になり、
--- 他人の公開カードまで見えていた
-```
-
-ログインすると、他人の公開カードまで見えていました。
-公開ページ側は `anon` で読んでいるので、**ログインしているときだけ穴が開く**という出方でした。
-
-### 踏む前に直した（profiles）
-
-その10日後、`profiles` のポリシーも同じ形（ロール指定なし）で残っているのに気づきました。
-
-⚠️ **ただしこちらは、その時点では穴が開いていませんでした。**
-`profiles` の `select` ポリシーは1本しかなく、OR で結合する相手がいなかったからです。
-
-```sql
-create policy "profiles are viewable by anon and authenticated"
-  on public.profiles for select
-  to anon, authenticated
-  using (true);
-```
-
-動作は1ミリも変わらない修正です。直したのは「ロール指定が無い」という記述のほうでした。
-**1本のうちは無害で、2本目を足した瞬間に開く**——という状態だったので、
-足す前に直しておいた、という判断です。
+その10日後、`profiles` の `select` ポリシーも同じ形で残っているのに気づき、2本目を足す前に `to anon, authenticated` を付けました。1本だけなら OR の相手がいないので、その時点では穴は開いていません。
 
 ### 2本に分けるか、1本で両ロールを指定するか
 
@@ -196,15 +158,6 @@ rollback;
 
 ### 追記: この検証は、そのままでは通ってしまった
 
-実装後にこの SQL を流したら `t` が返りました。ただ、それは検証になっていませんでした。
+実装後にこの SQL を流したら `t` が返りましたが、`visible = false` のカードにぶら下がるエントリーがまだ0件でした。落ちる側のデータが無いので、ポリシーを1行も書いていなくても `t` になります（同じ形の話を[ブログ](https://blog.mt-tk.com/the-check-passed-because-nobody-else-existed/)にも書きました）。
 
-数えているのは `visible = false` のカードにぶら下がるエントリーです。テーブルを作った直後は
-`feed_entries` が空で、ダミーを入れた後も、ダミーは公開カードにしか付けていなかった。
-**落ちる側のデータが0件なので、ポリシーを1行も書いていなくても `t` になります。**
-
-件数で書くとデータが増えたとき嘘になる、という教訓でこの形にしたのですが、
-不変量で書いても「対象が0件なら中身を見ずに合格する」ほうは残っていました。
-
-本物の検証になったのは、対象のカードを `visible = false` にしてから流したときです。
-落ちうるデータを先に用意して、それでも `t` が返ることを見る。検証 SQL には
-「その検証が落ちうるデータがあるか」を先に確かめる注記を足しました。
+対象のカードを `visible = false` にしてから流し直して、それでも `t` が返ることを確かめました。検証 SQL には「その検証が落ちうるデータがあるか」を先に確かめる注記を足しています。
