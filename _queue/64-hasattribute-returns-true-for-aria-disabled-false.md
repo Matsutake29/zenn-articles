@@ -13,21 +13,23 @@ published: false
 - Next.js（App Router） + Supabase + Tailwind CSS
 :::
 
-並び替えボタンの `disabled` 属性を `aria-disabled` に変えました。
-フォーカスが消える不具合を直すためです。
+並び替えボタンで、フォーカスが消える不具合がありました。
+キーボードで切り分けると、消えるのは「移動先が1番目のとき」だけで、原因は `disabled={index === 0}` でした。`disabled` な要素は、フォーカスを保持できません。
 
-テストも同じように、属性名を置換しました。
+そこで `disabled` を `aria-disabled` に変えると決めました。属性の書き換えとテストの修正はAIの作業にして、自分は判断と、差分の確認を受け持つ分担です。
+
+差分を見ると、テストは属性名の置換ではなく、`getAttribute` を使う形に変わっていました。名前だけを置換すると、こうなるからです。
 
 ```js
 // 変更前
 expect(btn.hasAttribute('disabled')).toBe(true)
 
-// 変更後
+// 名前だけ置換すると
 expect(btn.hasAttribute('aria-disabled')).toBe(true)
 ```
 
-**テストは全部、緑のまま通りました。**
-そして、何も検証しなくなっていました。
+**これは全部、緑のまま通ります。**
+そして、何も検証しなくなります。
 
 ## 真偽の表し方が違う
 
@@ -66,7 +68,7 @@ expect(ups[2].getAttribute('aria-disabled')).toBe('false')
 有効な側も `'false'` で明示的に書いています。
 **「無効でないこと」を確かめないと、全部無効になる実装が通ってしまう**からです。
 
-テストファイルには理由もコメントで残しました。
+テストファイルには、理由のコメントも残してあります。
 
 ```js
 // 🚨 hasAttribute は使わない。aria-disabled は false のときも属性自体は出るので、
@@ -83,7 +85,7 @@ expect(ups[2].getAttribute('aria-disabled')).toBe('false')
 `hasAttribute` が悪いわけではありません。
 **属性によって真偽の表し方が違うので、見る道具も変わる**というだけです。
 
-同じテストファイルに、`hasAttribute` を使っているテストを1本足しています。
+同じテストファイルに、`hasAttribute` を使っているテストが1本足してあります。
 
 ```js
 expect(up.getAttribute('aria-disabled')).toBe('true')
@@ -103,9 +105,9 @@ expect(down.hasAttribute('disabled')).toBe(false)
 
 ## 名前を置換したときは、意味も置換されたか見る
 
-振り返ると、やったのは検索と置換でした。
+属性の変更は、検索と置換で済む作業に見えます。
 `disabled` を `aria-disabled` に。
-実装側はそれで正しく、テスト側だけが意味を失っていました。
+実装側はそれで正しく、テスト側だけが意味を失います。
 
 危ないのは、**置換した結果が緑になる**ことです。
 赤くなれば手が止まりますが、緑のままなら通り過ぎます。
@@ -116,4 +118,4 @@ expect(down.hasAttribute('disabled')).toBe(false)
 だから、この置換をする人は同じ形で踏むと思います。
 
 一括置換をしたら、そのアサーションが**まだ偽になり得るか**を1回考える。
-今回はそこが抜けていました。
+置換の差分を読むときの見方が、1つ増えました。
