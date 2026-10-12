@@ -3,8 +3,7 @@ title: "zodのスキーマにz.url()を足すとテスト11本は通るのに本
 emoji: "🎯"
 type: "tech"
 topics: ["zod", "typescript", "テスト", "nextjs"]
-published: true
-published_at: 2026-10-12 18:00
+published: false
 ---
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
