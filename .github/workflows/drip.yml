@@ -1,6 +1,7 @@
 name: drip publish
 
-# _queue/ に待機させた記事を1日1本だけ articles/ へ昇格させる。
+# _queue/ に待機させた記事を articles/ へ昇格させる。
+# 🔄 2026-10-12 から2日に1本（drip.py の MIN_INTERVAL = 47h）。cron は毎日のまま1日おきに見送る。
 # Zennのレートリミット（直近24時間の投稿数・予約中を含む）に触れずに
 # 在庫を消化するための仕組み。詳細は scripts/drip.py のdocstring。
 

@@ -68,11 +68,17 @@ STATE = QUEUE / ".last-promoted"
 # 09-18 03:03（25h01m）と 09-21 06:02（25h00m）は弾かれた。相関が見えているのは
 # 昇格した時間帯のほう（→ .github/workflows/drip.yml のコメント）。
 # ここは二重昇格を防ぐ歯止めとして残す
-MIN_INTERVAL = datetime.timedelta(hours=23)
+# 🔄 2026-10-12 に 23h → 47h（2日に1本）へ変えた。9/30 から Zenn が1日おきにしか
+# 受理しなくなり（10/01・03・05・07・09・11 だけ通り、間の6回は全部「投稿数の上限」で
+# 弾かれた）、毎日昇格すると半分が弾かれて X 告知も1日おきに消えるため。
+# Zenn の上限は「ユーザーによって異なり、継続的に調整」される（公式の方針ページ）。
+# cron は毎日のまま。47h なので1日おきに見送り、48h ごとに1本昇格する。
+# 🎯 2026-11-12 以降に1回だけ 23h に戻して試し、通れば毎日に戻す（本人判断・10-12）
+MIN_INTERVAL = datetime.timedelta(hours=47)
 
 # 昇格が止まったと判断してジョブを失敗させるまでの時間。MIN_INTERVAL を
 # 大きく超えて見送りが続くのは、キューの詰まりか設定ミスが疑わしい
-STALL_AFTER = datetime.timedelta(hours=48)
+STALL_AFTER = datetime.timedelta(hours=72)  # 2日に1本にしたので 48h → 72h（10-12）
 
 
 def log(msg):
