@@ -3,9 +3,9 @@ title: "branch protectionのAPIが404でも、保護が無いとは限らなか�
 emoji: "🛡️"
 type: "tech"
 topics: ["github", "githubactions", "ci", "git"]
-published: false
+published: true
+published_at: 2026-10-15 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
