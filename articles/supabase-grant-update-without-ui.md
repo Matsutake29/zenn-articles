@@ -3,9 +3,9 @@ title: "SupabaseのRLSは正しいのに誰でも書き換えられた —— UI
 emoji: "🔓"
 type: "tech"
 topics: ["supabase", "postgresql", "rls", "security", "nextjs"]
-published: false
+published: true
+published_at: 2026-10-17 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
