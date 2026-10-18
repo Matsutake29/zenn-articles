@@ -3,9 +3,9 @@ title: "next/fontで日本語フォントを使ったら、preloadが121本出�
 emoji: "🔤"
 type: "tech"
 topics: ["nextjs", "webfont", "lighthouse", "performance", "googlefonts"]
-published: false
+published: true
+published_at: 2026-10-19 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
