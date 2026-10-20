@@ -3,9 +3,9 @@ title: "RLSの検証をSQL Editorで流したら、確かめたい結果が画�
 emoji: "🧪"
 type: "tech"
 topics: ["supabase", "postgresql", "rls", "sql", "security"]
-published: false
+published: true
+published_at: 2026-10-21 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
