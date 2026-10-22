@@ -3,9 +3,9 @@ title: "RLSで所有者IDを非正規化しても、結合は消えなかった"
 emoji: "🔗"
 type: "tech"
 topics: ["supabase", "postgresql", "rls", "設計"]
-published: false
+published: true
+published_at: 2026-10-23 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
