@@ -3,9 +3,9 @@ title: "Figmaの用語はほぼCSSに対応していた。読めるが作れな�
 emoji: "🖼"
 type: "tech"
 topics: ["figma", "css", "デザイン", "フロントエンド"]
-published: false
+published: true
+published_at: 2026-10-25 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
