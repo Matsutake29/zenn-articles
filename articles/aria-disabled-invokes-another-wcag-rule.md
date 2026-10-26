@@ -3,9 +3,9 @@ title: "disabled を aria-disabled に変えたら、別のWCAG基準が効き�
 emoji: "♿"
 type: "tech"
 topics: ["アクセシビリティ", "wcag", "aria", "react"]
-published: false
+published: true
+published_at: 2026-10-27 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
