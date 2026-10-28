@@ -3,9 +3,9 @@ title: "wp_postmeta は EAV だった。ACF を盛ると重い理由が、自作
 emoji: "🗄"
 type: "tech"
 topics: ["wordpress", "database", "acf", "sql"]
-published: false
+published: true
+published_at: 2026-10-29 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
