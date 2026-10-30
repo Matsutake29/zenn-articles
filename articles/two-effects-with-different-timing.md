@@ -3,9 +3,9 @@ title: "react-hook-form の errors で渡したエラーが、1回目の送信�
 emoji: "⏱"
 type: "tech"
 topics: ["react", "reacthookform", "nextjs", "typescript"]
-published: false
+published: true
+published_at: 2026-10-31 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
