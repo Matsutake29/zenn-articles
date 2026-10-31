@@ -1,5 +1,5 @@
 ---
-title: "react-hook-form の errors で渡したエラーが、1回目の送信だけ消えていた —— values の入れ直しが reset していた"
+title: "react-hook-form の errors が1回目の送信だけ消えていた —— values の入れ直しが reset していた"
 emoji: "⏱"
 type: "tech"
 topics: ["react", "reacthookform", "nextjs", "typescript"]
