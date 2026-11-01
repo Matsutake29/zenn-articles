@@ -3,9 +3,9 @@ title: "展開したカードの隙間を埋めなかった理由。grid-auto-fl
 emoji: "🧩"
 type: "tech"
 topics: ["css", "cssgrid", "アクセシビリティ", "tailwindcss"]
-published: false
+published: true
+published_at: 2026-11-02 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
