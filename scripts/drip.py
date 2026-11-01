@@ -33,6 +33,7 @@ X告知だけが先に出て404を晒したため、cronを24時間ぶんに広�
 
 import argparse
 import datetime
+import json
 import os
 import pathlib
 import re
@@ -113,6 +114,34 @@ def strip_leading_comments(body):
 def get_field(fm, key):
     m = re.search(rf"^{re.escape(key)}:\s*(.+?)\s*$", fm, re.M)
     return m.group(1) if m else None
+
+
+# Zennのタイトル上限。超えるとGitHub連携のデプロイが「保存に失敗」で中断し、
+# 公開されないまま後続の記事も止まる（2026-10-31に実際に起きた）。
+MAX_TITLE_LEN = 70
+
+
+def title_of(fm):
+    """frontmatterのtitleを、引用符とエスケープを外した実際の文字列で返す。"""
+    raw = get_field(fm, "title")
+    if raw is None:
+        return None
+    if raw.startswith('"') and raw.endswith('"') and len(raw) >= 2:
+        try:
+            return json.loads(raw)
+        except ValueError:
+            return raw[1:-1]
+    if raw.startswith("'") and raw.endswith("'") and len(raw) >= 2:
+        return raw[1:-1].replace("''", "'")
+    return raw
+
+
+def title_length_error(fm):
+    """タイトルが上限を超えていれば、エラーメッセージを返す。問題なければ None。"""
+    title = title_of(fm)
+    if title is not None and len(title) > MAX_TITLE_LEN:
+        return f"titleが{len(title)}字です（Zennの上限は{MAX_TITLE_LEN}字）: {title}"
+    return None
 
 
 def set_field(fm, key, value):
@@ -283,6 +312,11 @@ def promote(now, publish_time, dry_run, force):
     fm, body = parse_frontmatter(text)
     if fm is None:
         log(f"[error] {src.name} にfrontmatterがありません。")
+        return False, False
+
+    err = title_length_error(fm)
+    if err:
+        log(f"[error] {src.name}: {err}")
         return False, False
 
     body = strip_leading_comments(body)

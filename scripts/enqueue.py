@@ -16,7 +16,7 @@ import pathlib
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from drip import parse_frontmatter, strip_leading_comments  # noqa: E402
+from drip import parse_frontmatter, strip_leading_comments, title_length_error  # noqa: E402
 
 
 def main():
@@ -30,6 +30,11 @@ def main():
     fm, body = parse_frontmatter(text)
     if fm is None:
         print(f"[error] frontmatterがありません: {args.src}")
+        return 1
+
+    err = title_length_error(fm)
+    if err:
+        print(f"[error] {err}")
         return 1
 
     stripped = strip_leading_comments(body)
