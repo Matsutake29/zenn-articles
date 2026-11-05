@@ -3,9 +3,9 @@ title: "hasAttribute は aria-disabled=\"false\" でも true を返す。属性�
 emoji: "🟢"
 type: "tech"
 topics: ["テスト", "aria", "vitest", "アクセシビリティ"]
-published: false
+published: true
+published_at: 2026-11-06 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
