@@ -3,9 +3,9 @@ title: "「取れなかった」を「0件だった」に変換しない。外�
 emoji: "🛡"
 type: "tech"
 topics: ["設計", "nextjs", "api", "supabase"]
-published: false
+published: true
+published_at: 2026-11-08 18:00
 ---
-
 :::message
 2作目のポートフォリオとして「Hubpin」（分散した発信を1か所に集めるハブサイト）を作りながら書いています。
 
